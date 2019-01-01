@@ -1,0 +1,48 @@
+﻿@using System.Data.Entity.Migrations.Model
+@using VidlyApp.Models
+@using VidlyApp.ViewModels
+@model VidlyApp.ViewModels.CustomerMovieViewModel
+@{
+	ViewBag.Title = "index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Customers</h2>
+<button type="button" class="btn btn-default">@Html.ActionLink("Add Customer", "New", "Customers")</button>
+@if (!Model.Customer.Any())
+{
+	<p>We don't have any customers yet.</p>
+}
+else
+{
+	<table class="table table-bordered table-hover">
+		<thead>
+		<tr>
+			<th>Customer</th>
+			<th>Membership Type</th>
+			<th></th>
+
+		</tr>
+		</thead>
+		<tbody>
+		@foreach (var customer in Model.Customer)
+		{
+			<tr>
+				<td>@Html.ActionLink(customer.Name, "Details", "customers", new { id = customer.Id }, new { })</td>
+				<td>@customer.MembershipType.Name</td>
+				
+
+			</tr>
+
+			}
+		</tbody>
+
+
+	</table>
+
+	 
+
+	
+
+}
+
